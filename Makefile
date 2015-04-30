@@ -31,8 +31,8 @@ clean:
 	@ echo "==> Adding Erlang/OTP basic applications to PLT"
 	@ dialyzer --output_plt .dialyzer_plt --build_plt --apps erts kernel stdlib compiler syntax_tools inets crypto ssl
 	@ echo "==> Adding Elixir to PLT..."
-	@ dialyzer --plt .dialyzer_plt --add_to_plt -r $(ELIXIR_PATH)/lib/*/ebin
+	@ dialyzer --plt .dialyzer_plt --add_to_plt -r _build/dev/lib/graphviz/ebin/
 
 dialyze: .dialyzer_plt compile
 	@ echo "==> Dialyzing GraphViz..."
-	@ dialyzer --plt .dialyzer_plt -r ebin
+	@ dialyzer --plt .dialyzer_plt -r _build/dev/lib/graphviz/ebin/

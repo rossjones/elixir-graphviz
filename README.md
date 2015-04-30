@@ -54,15 +54,15 @@ Otherwise this is a fairly complete way to generate GraphViz diagrams.
 
 First, create a new graph:
 
-    graph = GraphViz.Graph[ name: "name", is_strict: true, is_directed: true, attributes: [ label: "A label", rankdir: :LR ] ]
+    graph = %GraphViz.Graph{ name: "name", is_strict: true, is_directed: true, attributes: [ label: "A label", rankdir: :LR ] }
 
 Then, add stuff into the graph:
 
     graph = graph
-         |> GraphViz.add(GraphViz.SubGraph[ id: id_of_cluster, is_cluster: true, attributes: [ label: "Cluster" ] ])
-         |> GraphViz.add(GraphViz.Node[ id: id_of_source, parent: id_of_cluster, attributes: [ label: "Source" ] ])
-         |> GraphViz.add(GraphViz.Node[ id: id_of_target, attributes: [ label: "Target" ] ])
-         |> GraphViz.add(GraphViz.Edge[ id: id_of_edge, source: id_of_source, target: id_of_target, attributes: [ label: "Edge" ] ])
+         |> GraphViz.add(%GraphViz.SubGraph{ id: id_of_cluster, is_cluster: true, attributes: [ label: "Cluster" ] })
+         |> GraphViz.add(%GraphViz.Node{ id: id_of_source, parent: id_of_cluster, attributes: [ label: "Source" ] })
+         |> GraphViz.add(%GraphViz.Node{ id: id_of_target, attributes: [ label: "Target" ] })
+         |> GraphViz.add(%GraphViz.Edge{ id: id_of_edge, source: id_of_source, target: id_of_target, attributes: [ label: "Edge" ] })
 
 You will need to use some sort of a unique identifier for each element
 (including edges!). Using references (`make_ref`) is OK, as is using anything
